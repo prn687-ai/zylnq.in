@@ -5,154 +5,247 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Zylnq — AI-powered professional networking. Swipe to connect with the right people to hire, mentor, collaborate, or build with." />
   <title>Zylnq — AI-Powered Professional Networking</title>
+  <link rel="icon" href="/icon.png" />
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
-      --purple: #5B4FE8;
-      --purple-dark: #3D2DB0;
+      --purple:       #5B4FE8;
+      --purple-dark:  #3D2DB0;
+      --purple-deep:  #2D1FA8;
       --purple-light: #8B7FFF;
-      --teal: #00A88A;
-      --teal-light: #00C9A7;
-      --dark: #1A1A2E;
-      --text: #444460;
-      --bg: #f5f3ff;
-      --card-bg: #ffffff;
-      --border: #e8e4f8;
+      --purple-pale:  #EDE9FE;
+      --teal:         #00A88A;
+      --teal-light:   #00C9A7;
+      --dark:         #1A1A2E;
+      --text:         #444460;
+      --text-light:   #9590B8;
+      --bg:           #F5F3FF;
+      --white:        #ffffff;
+      --border:       #E8E4F8;
     }
 
     html { scroll-behavior: smooth; }
-
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       background: var(--bg);
       color: var(--dark);
       line-height: 1.6;
+      overflow-x: hidden;
     }
 
-    /* ── NAV ───────────────────────────────────────────────────── */
+    /* ── NAV ─────────────────────────────────────────────── */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       display: flex; align-items: center; justify-content: space-between;
-      padding: 16px 40px;
-      background: rgba(255,255,255,0.85);
-      backdrop-filter: blur(12px);
+      padding: 14px 40px;
+      background: rgba(255,255,255,0.88);
+      backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border);
     }
-    .nav-logo { font-size: 22px; font-weight: 800; color: var(--purple); letter-spacing: -0.5px; }
-    .nav-links { display: flex; gap: 32px; list-style: none; }
-    .nav-links a { font-size: 14px; font-weight: 500; color: var(--text); text-decoration: none; }
+    .nav-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-brand img { width: 34px; height: 34px; border-radius: 10px; }
+    .nav-brand span { font-size: 20px; font-weight: 800; color: var(--purple); letter-spacing: -0.5px; }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a { font-size: 14px; font-weight: 500; color: var(--text); text-decoration: none; transition: color 0.2s; }
     .nav-links a:hover { color: var(--purple); }
     .nav-cta {
       background: var(--purple); color: #fff;
-      padding: 10px 20px; border-radius: 20px;
+      padding: 10px 22px; border-radius: 22px;
       font-size: 14px; font-weight: 600; text-decoration: none;
       transition: opacity 0.2s;
     }
     .nav-cta:hover { opacity: 0.85; }
 
-    /* ── HERO ──────────────────────────────────────────────────── */
+    /* ── HERO ─────────────────────────────────────────────── */
     .hero {
       min-height: 100vh;
-      background: linear-gradient(135deg, #2D1FA8 0%, #5B4FE8 50%, #8B7FFF 100%);
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      text-align: center;
-      padding: 120px 24px 80px;
+      background: linear-gradient(145deg, var(--purple-deep) 0%, var(--purple) 55%, var(--purple-light) 100%);
+      display: flex; align-items: center;
+      padding: 100px 40px 60px;
       position: relative; overflow: hidden;
     }
+    /* decorative orbs */
     .hero::before {
-      content: '';
-      position: absolute; top: -100px; right: -100px;
-      width: 500px; height: 500px; border-radius: 50%;
-      background: rgba(255,255,255,0.05);
+      content: ''; position: absolute; top: -120px; right: -120px;
+      width: 600px; height: 600px; border-radius: 50%;
+      background: rgba(255,255,255,0.05); pointer-events: none;
     }
     .hero::after {
-      content: '';
-      position: absolute; bottom: -80px; left: -80px;
-      width: 350px; height: 350px; border-radius: 50%;
-      background: rgba(0,201,167,0.1);
+      content: ''; position: absolute; bottom: -100px; left: -60px;
+      width: 400px; height: 400px; border-radius: 50%;
+      background: rgba(0,201,167,0.08); pointer-events: none;
     }
+
+    .hero-inner {
+      max-width: 1100px; margin: 0 auto; width: 100%;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 60px; position: relative; z-index: 1;
+    }
+
+    /* left copy */
+    .hero-copy { flex: 1; }
     .hero-badge {
-      display: inline-block;
-      background: rgba(0,201,167,0.2);
-      border: 1px solid rgba(0,201,167,0.4);
-      color: #00C9A7;
-      font-size: 12px; font-weight: 700; letter-spacing: 1.5px;
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(0,201,167,0.15);
+      border: 1px solid rgba(0,201,167,0.35);
+      color: var(--teal-light);
+      font-size: 12px; font-weight: 700; letter-spacing: 1.2px;
       text-transform: uppercase;
-      padding: 6px 16px; border-radius: 20px;
-      margin-bottom: 24px;
+      padding: 6px 14px; border-radius: 20px; margin-bottom: 28px;
     }
+    .hero-badge span { width: 6px; height: 6px; border-radius: 50%; background: var(--teal-light); display: inline-block; }
     .hero h1 {
-      font-size: clamp(36px, 6vw, 72px);
+      font-size: clamp(38px, 5vw, 64px);
       font-weight: 800; color: #fff;
-      line-height: 1.1; letter-spacing: -2px;
-      max-width: 800px; margin-bottom: 20px;
+      line-height: 1.08; letter-spacing: -2px;
+      margin-bottom: 22px;
     }
-    .hero h1 span { color: #00C9A7; }
-    .hero p {
-      font-size: clamp(16px, 2vw, 20px);
-      color: rgba(255,255,255,0.75);
-      max-width: 520px; margin-bottom: 40px; line-height: 1.7;
+    .hero h1 em { font-style: normal; color: var(--teal-light); }
+    .hero-desc {
+      font-size: 17px; color: rgba(255,255,255,0.72);
+      max-width: 460px; line-height: 1.75; margin-bottom: 36px;
     }
-    .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
-    .btn-primary {
+    .hero-buttons { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 52px; }
+
+    .btn-play {
       display: inline-flex; align-items: center; gap: 10px;
       background: #fff; color: var(--purple);
-      padding: 16px 28px; border-radius: 14px;
-      font-size: 16px; font-weight: 700; text-decoration: none;
+      padding: 15px 26px; border-radius: 14px;
+      font-size: 15px; font-weight: 700; text-decoration: none;
+      box-shadow: 0 8px 28px rgba(0,0,0,0.22);
       transition: transform 0.2s, box-shadow 0.2s;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
     }
-    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(0,0,0,0.25); }
-    .btn-secondary {
-      display: inline-flex; align-items: center; gap: 10px;
-      background: rgba(255,255,255,0.15); color: #fff;
-      padding: 16px 28px; border-radius: 14px;
-      font-size: 16px; font-weight: 600; text-decoration: none;
-      border: 1px solid rgba(255,255,255,0.25);
+    .btn-play:hover { transform: translateY(-2px); box-shadow: 0 14px 36px rgba(0,0,0,0.28); }
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,0.12); color: #fff;
+      padding: 15px 26px; border-radius: 14px;
+      font-size: 15px; font-weight: 600; text-decoration: none;
+      border: 1px solid rgba(255,255,255,0.22);
       transition: background 0.2s;
     }
-    .btn-secondary:hover { background: rgba(255,255,255,0.25); }
-    .hero-stats {
-      display: flex; gap: 40px; margin-top: 64px;
-      position: relative; z-index: 1;
-    }
-    .stat { text-align: center; }
-    .stat-number { font-size: 28px; font-weight: 800; color: #fff; }
-    .stat-label { font-size: 12px; color: rgba(255,255,255,0.6); margin-top: 2px; }
+    .btn-ghost:hover { background: rgba(255,255,255,0.22); }
 
-    /* ── SECTION COMMON ────────────────────────────────────────── */
+    .hero-stats { display: flex; gap: 36px; }
+    .stat { }
+    .stat-num { font-size: 26px; font-weight: 800; color: #fff; }
+    .stat-lbl { font-size: 12px; color: rgba(255,255,255,0.55); margin-top: 2px; }
+
+    /* right — phone mockup */
+    .hero-visual { flex-shrink: 0; }
+    .phone {
+      width: 240px; height: 490px;
+      background: rgba(255,255,255,0.08);
+      border: 1.5px solid rgba(255,255,255,0.2);
+      border-radius: 40px;
+      position: relative; overflow: hidden;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.35), 0 0 0 1px rgba(255,255,255,0.05);
+    }
+    .phone-notch {
+      width: 80px; height: 22px;
+      background: rgba(255,255,255,0.12);
+      border-radius: 0 0 14px 14px;
+      margin: 0 auto;
+    }
+    .phone-screen { padding: 12px; }
+
+    /* swipe card inside phone */
+    .swipe-card {
+      background: #fff; border-radius: 20px;
+      padding: 16px; margin-bottom: 10px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    }
+    .swipe-avatar {
+      width: 56px; height: 56px; border-radius: 16px;
+      background: linear-gradient(135deg, var(--purple), var(--purple-light));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px; margin-bottom: 10px;
+    }
+    .swipe-name { font-size: 13px; font-weight: 700; color: var(--dark); }
+    .swipe-role { font-size: 11px; color: var(--text-light); margin-top: 2px; }
+    .swipe-tags { display: flex; gap: 4px; margin-top: 10px; flex-wrap: wrap; }
+    .swipe-tag {
+      font-size: 9px; font-weight: 600; padding: 3px 8px; border-radius: 8px;
+      background: var(--purple-pale); color: var(--purple);
+    }
+    .swipe-tag.teal { background: #E0FAF5; color: var(--teal); }
+
+    .phone-actions {
+      display: flex; justify-content: center; gap: 16px; margin-top: 6px;
+    }
+    .action-btn {
+      width: 44px; height: 44px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px;
+    }
+    .action-pass { background: rgba(255,80,80,0.15); }
+    .action-like { background: rgba(91,79,232,0.18); }
+    .action-super { background: rgba(0,201,167,0.18); }
+
+    .match-badge {
+      background: linear-gradient(135deg, var(--teal), var(--teal-light));
+      border-radius: 14px; padding: 10px 12px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .match-badge-text { font-size: 11px; font-weight: 700; color: #fff; }
+    .match-badge-sub { font-size: 9px; color: rgba(255,255,255,0.7); }
+
+    /* ── ABOUT STRIP ─────────────────────────────────────── */
+    .about-strip {
+      background: #fff;
+      border-bottom: 1px solid var(--border);
+    }
+    .about-strip-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 0; align-items: stretch;
+    }
+    .about-left {
+      padding: 72px 60px 72px 40px;
+      border-right: 1px solid var(--border);
+    }
+    .about-right { padding: 72px 40px 72px 60px; }
+    .about-left h2, .about-right h2 {
+      font-size: 28px; font-weight: 800; color: var(--dark);
+      margin-bottom: 16px; letter-spacing: -0.5px; line-height: 1.2;
+    }
+    .about-left p, .about-right p {
+      font-size: 15px; color: var(--text); line-height: 1.75;
+    }
+    .about-accent { color: var(--purple); }
+    .about-accent-teal { color: var(--teal); }
+
+    /* ── SECTION COMMON ──────────────────────────────────── */
     section { padding: 80px 24px; }
+    .container { max-width: 1100px; margin: 0 auto; }
     .section-tag {
       font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
       text-transform: uppercase; color: var(--teal);
       margin-bottom: 12px;
     }
     .section-title {
-      font-size: clamp(24px, 4vw, 40px);
+      font-size: clamp(26px, 4vw, 42px);
       font-weight: 800; color: var(--dark);
-      letter-spacing: -0.5px; margin-bottom: 16px;
+      letter-spacing: -0.5px; margin-bottom: 16px; line-height: 1.15;
     }
     .section-sub {
-      font-size: 16px; color: var(--text);
-      max-width: 520px; line-height: 1.7;
+      font-size: 16px; color: var(--text); max-width: 520px; line-height: 1.75;
     }
-    .container { max-width: 1100px; margin: 0 auto; }
 
-    /* ── HOW IT WORKS ──────────────────────────────────────────── */
-    .how { background: #fff; }
+    /* ── HOW IT WORKS ────────────────────────────────────── */
+    .how { background: var(--bg); }
     .how-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 32px; margin-top: 56px;
+      gap: 24px; margin-top: 52px;
     }
     .how-step {
-      text-align: center; padding: 32px 24px;
-      background: var(--bg); border-radius: 20px;
-      border: 1px solid var(--border);
+      background: #fff; border-radius: 20px;
+      border: 1px solid var(--border); padding: 32px 24px;
+      text-align: center;
     }
-    .how-step-num {
+    .how-num {
       width: 48px; height: 48px; border-radius: 14px;
       background: linear-gradient(135deg, var(--purple), var(--purple-light));
       color: #fff; font-size: 20px; font-weight: 800;
@@ -160,80 +253,126 @@
       margin: 0 auto 20px;
     }
     .how-step h3 { font-size: 16px; font-weight: 700; color: var(--dark); margin-bottom: 8px; }
-    .how-step p { font-size: 14px; color: var(--text); line-height: 1.6; }
+    .how-step p { font-size: 14px; color: var(--text); line-height: 1.65; }
 
-    /* ── FEATURES ──────────────────────────────────────────────── */
+    /* ── FEATURES ────────────────────────────────────────── */
+    .features { background: #fff; }
     .features-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 24px; margin-top: 56px;
+      gap: 22px; margin-top: 52px;
     }
     .feature-card {
-      background: var(--card-bg); border-radius: 20px;
-      border: 1px solid var(--border);
-      padding: 32px;
-      box-shadow: 0 4px 20px rgba(91,79,232,0.05);
+      background: var(--bg); border-radius: 20px;
+      border: 1px solid var(--border); padding: 30px;
       transition: transform 0.2s, box-shadow 0.2s;
     }
-    .feature-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(91,79,232,0.12); }
+    .feature-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(91,79,232,0.1); }
     .feature-icon {
-      width: 52px; height: 52px; border-radius: 16px;
+      width: 50px; height: 50px; border-radius: 15px;
       display: flex; align-items: center; justify-content: center;
-      font-size: 24px; margin-bottom: 20px;
+      font-size: 22px; margin-bottom: 18px;
     }
+    .fi-purple { background: var(--purple-pale); }
+    .fi-teal   { background: #E0FAF5; }
+    .fi-warm   { background: #FFF3E0; }
+    .fi-blue   { background: #E3F2FD; }
+    .fi-green  { background: #E8F5E9; }
+    .fi-pink   { background: #FCE4EC; }
     .feature-card h3 { font-size: 17px; font-weight: 700; color: var(--dark); margin-bottom: 8px; }
-    .feature-card p { font-size: 14px; color: var(--text); line-height: 1.65; }
+    .feature-card p  { font-size: 14px; color: var(--text); line-height: 1.65; }
 
-    /* ── USE CASES ─────────────────────────────────────────────── */
-    .usecases { background: #fff; }
+    /* ── USE CASES ───────────────────────────────────────── */
+    .usecases { background: var(--bg); }
     .usecases-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 16px; margin-top: 48px;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 14px; margin-top: 48px;
     }
     .usecase-pill {
       display: flex; flex-direction: column; align-items: center;
-      gap: 10px; padding: 24px 16px;
-      background: var(--bg); border-radius: 16px;
+      gap: 10px; padding: 22px 12px;
+      background: #fff; border-radius: 16px;
       border: 1px solid var(--border); text-align: center;
+      transition: border-color 0.2s, transform 0.2s;
     }
-    .usecase-pill span:first-child { font-size: 28px; }
-    .usecase-pill span:last-child { font-size: 13px; font-weight: 600; color: var(--dark); }
+    .usecase-pill:hover { border-color: var(--purple); transform: translateY(-2px); }
+    .usecase-pill span:first-child { font-size: 26px; }
+    .usecase-pill span:last-child  { font-size: 13px; font-weight: 600; color: var(--dark); }
 
-    /* ── CTA ───────────────────────────────────────────────────── */
+    /* ── CTA BANNER ──────────────────────────────────────── */
     .cta {
-      background: linear-gradient(135deg, var(--purple-dark), var(--purple), var(--purple-light));
+      background: linear-gradient(145deg, var(--purple-deep), var(--purple), var(--purple-light));
       text-align: center; padding: 80px 24px;
+      position: relative; overflow: hidden;
     }
-    .cta h2 { font-size: clamp(28px, 4vw, 48px); font-weight: 800; color: #fff; margin-bottom: 16px; }
-    .cta p { font-size: 18px; color: rgba(255,255,255,0.75); margin-bottom: 40px; }
+    .cta::before {
+      content: ''; position: absolute; top: -80px; right: -80px;
+      width: 400px; height: 400px; border-radius: 50%;
+      background: rgba(255,255,255,0.05);
+    }
+    .cta-logo {
+      width: 72px; height: 72px; border-radius: 22px;
+      margin: 0 auto 24px; display: block;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+    }
+    .cta h2 {
+      font-size: clamp(28px, 4vw, 48px);
+      font-weight: 800; color: #fff;
+      margin-bottom: 14px; letter-spacing: -1px;
+    }
+    .cta p { font-size: 17px; color: rgba(255,255,255,0.72); margin-bottom: 36px; }
+    .btn-white {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: #fff; color: var(--purple);
+      padding: 16px 30px; border-radius: 14px;
+      font-size: 16px; font-weight: 700; text-decoration: none;
+      box-shadow: 0 8px 28px rgba(0,0,0,0.2);
+      transition: transform 0.2s;
+    }
+    .btn-white:hover { transform: translateY(-2px); }
 
-    /* ── FOOTER ────────────────────────────────────────────────── */
+    /* ── FOOTER ──────────────────────────────────────────── */
     footer {
-      background: var(--dark); color: rgba(255,255,255,0.5);
-      padding: 48px 40px 32px;
+      background: var(--dark); color: rgba(255,255,255,0.45);
+      padding: 52px 40px 28px;
     }
     .footer-top {
-      display: flex; justify-content: space-between; align-items: flex-start;
-      flex-wrap: wrap; gap: 32px; margin-bottom: 40px;
+      display: flex; justify-content: space-between;
+      flex-wrap: wrap; gap: 40px; margin-bottom: 40px;
     }
-    .footer-brand h3 { font-size: 22px; font-weight: 800; color: #fff; margin-bottom: 8px; }
-    .footer-brand p { font-size: 13px; max-width: 240px; line-height: 1.6; }
-    .footer-links h4 { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: rgba(255,255,255,0.3); margin-bottom: 16px; }
-    .footer-links ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-    .footer-links a { font-size: 14px; color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s; }
-    .footer-links a:hover { color: #fff; }
+    .footer-brand { max-width: 260px; }
+    .footer-brand-row { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+    .footer-brand-row img { width: 36px; height: 36px; border-radius: 10px; }
+    .footer-brand-row span { font-size: 20px; font-weight: 800; color: #fff; }
+    .footer-brand p { font-size: 13px; line-height: 1.65; }
+    .footer-col h4 {
+      font-size: 11px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 1px; color: rgba(255,255,255,0.28); margin-bottom: 16px;
+    }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-col a { font-size: 14px; color: rgba(255,255,255,0.45); text-decoration: none; transition: color 0.2s; }
+    .footer-col a:hover { color: #fff; }
     .footer-bottom {
-      border-top: 1px solid rgba(255,255,255,0.08);
-      padding-top: 24px;
+      border-top: 1px solid rgba(255,255,255,0.07);
+      padding-top: 24px; font-size: 12px;
       display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
-      font-size: 12px;
     }
 
-    /* ── RESPONSIVE ────────────────────────────────────────────── */
+    /* ── RESPONSIVE ──────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .hero-inner { flex-direction: column; text-align: center; }
+      .hero-copy { display: flex; flex-direction: column; align-items: center; }
+      .hero-desc { text-align: center; }
+      .hero-visual { display: none; }
+      .about-strip-inner { grid-template-columns: 1fr; }
+      .about-left { border-right: none; border-bottom: 1px solid var(--border); padding: 48px 24px; }
+      .about-right { padding: 48px 24px; }
+    }
     @media (max-width: 640px) {
       nav { padding: 14px 20px; }
       .nav-links { display: none; }
+      .hero { padding: 90px 20px 60px; }
       .hero-stats { gap: 24px; }
       .footer-top { flex-direction: column; }
       .footer-bottom { flex-direction: column; }
@@ -242,10 +381,14 @@
 </head>
 <body>
 
-  <!-- NAV -->
+  <!-- ── NAV ─────────────────────────────────────────────── -->
   <nav>
-    <div class="nav-logo">Zylnq</div>
+    <a class="nav-brand" href="/">
+      <img src="/icon.png" alt="Zylnq logo" />
+      <span>Zylnq</span>
+    </a>
     <ul class="nav-links">
+      <li><a href="#about">About</a></li>
       <li><a href="#features">Features</a></li>
       <li><a href="#how">How it works</a></li>
       <li><a href="#usecases">Use cases</a></li>
@@ -253,120 +396,199 @@
     <a href="https://play.google.com/store/apps/details?id=com.bschundawat143.syncov" class="nav-cta">Download App</a>
   </nav>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-badge">Now on Android</div>
-    <h1>Network like you<br/><span>swipe.</span></h1>
-    <p>Zylnq matches you with the right professionals to hire, get hired, find a mentor, collaborate, or raise funding — all in one swipe.</p>
-    <div class="hero-buttons">
-      <a href="https://play.google.com/store/apps/details?id=com.bschundawat143.syncov" class="btn-primary">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M3.18 23.76a2 2 0 0 0 2.83 0l.1-.1 9.53-9.53-2.83-2.83L3.18 20.93a2 2 0 0 0 0 2.83zM20.49 10.23l-2.36-1.36-3.17 3.17 3.17 3.17 2.39-1.38a2 2 0 0 0 0-3.6zM2.01 1.05a2 2 0 0 0-.01.28v21.34c0 .1.01.19.02.28l.1-.1 10.65-10.65L2.13 1.13l-.12-.08zM6.01.24L17.04 6.6l-3.17 3.17L6.11.34A2 2 0 0 0 6.01.24z"/></svg>
-        Get it on Google Play
-      </a>
-      <a href="#how" class="btn-secondary">
-        See how it works →
-      </a>
-    </div>
-    <div class="hero-stats">
-      <div class="stat">
-        <div class="stat-number">16+</div>
-        <div class="stat-label">Industries</div>
+  <!-- ── HERO ─────────────────────────────────────────────── -->
+  <section class="hero" id="home">
+    <div class="hero-inner">
+
+      <!-- Left copy -->
+      <div class="hero-copy">
+        <div class="hero-badge"><span></span>Now live on Android</div>
+        <h1>Professional<br/>networking,<br/><em>reimagined.</em></h1>
+        <p class="hero-desc">
+          Zylnq uses AI to match you with the right professionals — to hire, get hired,
+          find mentors, raise funding, or build something together.
+          No noise. No cold reach-outs. Just meaningful connections.
+        </p>
+        <div class="hero-buttons">
+          <a href="https://play.google.com/store/apps/details?id=com.bschundawat143.syncov" class="btn-play">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M3.18 23.76a2 2 0 0 0 2.83 0l.1-.1 9.53-9.53-2.83-2.83L3.18 20.93a2 2 0 0 0 0 2.83zM20.49 10.23l-2.36-1.36-3.17 3.17 3.17 3.17 2.39-1.38a2 2 0 0 0 0-3.6zM2.01 1.05a2 2 0 0 0-.01.28v21.34c0 .1.01.19.02.28l.1-.1 10.65-10.65L2.13 1.13l-.12-.08zM6.01.24L17.04 6.6l-3.17 3.17L6.11.34A2 2 0 0 0 6.01.24z"/></svg>
+            Get it on Google Play
+          </a>
+          <a href="#how" class="btn-ghost">See how it works →</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat">
+            <div class="stat-num">16+</div>
+            <div class="stat-lbl">Industries</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">15</div>
+            <div class="stat-lbl">Indian cities</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">AI</div>
+            <div class="stat-lbl">Smart matching</div>
+          </div>
+        </div>
       </div>
-      <div class="stat">
-        <div class="stat-number">AI</div>
-        <div class="stat-label">Powered matching</div>
+
+      <!-- Right — phone mockup -->
+      <div class="hero-visual">
+        <div class="phone">
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+
+            <!-- Swipe card 1 -->
+            <div class="swipe-card">
+              <div class="swipe-avatar">👩‍💻</div>
+              <div class="swipe-name">Priya Sharma</div>
+              <div class="swipe-role">Product Manager · Bengaluru</div>
+              <div class="swipe-tags">
+                <div class="swipe-tag">Hire talent</div>
+                <div class="swipe-tag teal">AI / ML</div>
+                <div class="swipe-tag">SaaS</div>
+              </div>
+            </div>
+
+            <!-- Actions -->
+            <div class="phone-actions">
+              <div class="action-btn action-pass">✕</div>
+              <div class="action-btn action-super">★</div>
+              <div class="action-btn action-like">♥</div>
+            </div>
+
+            <!-- Match notification -->
+            <div style="margin-top: 14px;">
+              <div class="match-badge">
+                <div style="font-size:18px;">🎉</div>
+                <div>
+                  <div class="match-badge-text">It's a Match!</div>
+                  <div class="match-badge-sub">You and Rahul connected</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
       </div>
-      <div class="stat">
-        <div class="stat-number">🇮🇳</div>
-        <div class="stat-label">Built for India</div>
-      </div>
+
     </div>
   </section>
 
-  <!-- HOW IT WORKS -->
+  <!-- ── ABOUT ──────────────────────────────────────────── -->
+  <div class="about-strip" id="about">
+    <div class="about-strip-inner">
+      <div class="about-left">
+        <h2>Built for India's<br/><span class="about-accent">ambitious professionals.</span></h2>
+        <p>
+          India has millions of talented professionals — engineers, designers, founders,
+          investors, marketers — all looking for the right connection. But finding those
+          people has always been slow, awkward, and luck-based.
+          <br/><br/>
+          Zylnq changes that. Tell us what you're looking for,
+          and our AI surfaces the most relevant people in your city, industry, and goal —
+          instantly. Swipe to connect. Match to chat. Build together.
+        </p>
+      </div>
+      <div class="about-right">
+        <h2>Your goals.<br/><span class="about-accent-teal">Your network.</span></h2>
+        <p>
+          Whether you're a founder looking for a co-founder, a recruiter scouting for top
+          talent, a fresher seeking a mentor, or a freelancer finding new clients —
+          Zylnq has a place for you.
+          <br/><br/>
+          Beyond matching, Zylnq brings your professional world together: job opportunities,
+          industry events, candidate referrals, and a community that grows with you.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── HOW IT WORKS ───────────────────────────────────── -->
   <section class="how" id="how">
     <div class="container">
       <div class="section-tag">How it works</div>
-      <h2 class="section-title">Three steps to your next opportunity</h2>
-      <p class="section-sub">No cold emails. No unanswered LinkedIn requests. Just meaningful connections — fast.</p>
+      <h2 class="section-title">Four steps to your<br/>next opportunity</h2>
+      <p class="section-sub">No cold messages. No unanswered requests. Just intentional connections — fast.</p>
       <div class="how-grid">
         <div class="how-step">
-          <div class="how-step-num">1</div>
+          <div class="how-num">1</div>
           <h3>Build your profile</h3>
-          <p>Add your skills, experience, goals, and what you're open to — hiring, mentoring, collaborating, or fundraising.</p>
+          <p>Add your skills, experience, city, and goals. Be specific — the more you share, the better your matches.</p>
         </div>
         <div class="how-step">
-          <div class="how-step-num">2</div>
+          <div class="how-num">2</div>
           <h3>Swipe to connect</h3>
-          <p>Our AI surfaces the most relevant professionals for your goals. Swipe right to express interest, left to pass.</p>
+          <p>Our AI surfaces relevant professionals for your goals. Swipe right to express interest, left to pass.</p>
         </div>
         <div class="how-step">
-          <div class="how-step-num">3</div>
-          <h3>Match & chat</h3>
-          <p>When both parties connect, a conversation opens. No awkward cold reach-outs — both sides opted in.</p>
+          <div class="how-num">3</div>
+          <h3>Match &amp; chat</h3>
+          <p>When both parties connect, a conversation opens. Both sides opted in — so every chat is warm.</p>
         </div>
         <div class="how-step">
-          <div class="how-step-num">4</div>
-          <h3>Grow your network</h3>
+          <div class="how-num">4</div>
+          <h3>Grow &amp; achieve</h3>
           <p>Attend events, post opportunities, refer candidates, and build your professional reputation over time.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- FEATURES -->
-  <section id="features">
+  <!-- ── FEATURES ───────────────────────────────────────── -->
+  <section class="features" id="features">
     <div class="container">
       <div class="section-tag">Features</div>
-      <h2 class="section-title">Everything in one app</h2>
-      <p class="section-sub">Zylnq combines the best of LinkedIn, networking events, and referral platforms — without the noise.</p>
+      <h2 class="section-title">Everything you need<br/>to grow professionally</h2>
+      <p class="section-sub">Zylnq brings together the tools modern professionals need — in one focused, ad-free app.</p>
       <div class="features-grid">
 
         <div class="feature-card">
-          <div class="feature-icon" style="background:#ede9fe;">🤝</div>
-          <h3>Smart Matching</h3>
-          <p>AI matches you with professionals based on your goals, skills, industry, and location — not just who you already know.</p>
+          <div class="feature-icon fi-purple">🤝</div>
+          <h3>AI-Powered Matching</h3>
+          <p>Our engine matches you based on your goals, skills, industry, and location — not random algorithms. Every suggestion is intentional.</p>
         </div>
 
         <div class="feature-card">
-          <div class="feature-icon" style="background:#e0faf5;">💼</div>
+          <div class="feature-icon fi-teal">💼</div>
           <h3>Opportunities Board</h3>
-          <p>Post jobs, internships, or freelance gigs. Apply with a single tap. No resume needed — your profile speaks for you.</p>
+          <p>Post jobs, internships, or freelance gigs. Apply with one tap. Your profile replaces the resume — skills speak louder than paper.</p>
         </div>
 
         <div class="feature-card">
-          <div class="feature-icon" style="background:#fff3e0;">🎪</div>
+          <div class="feature-icon fi-warm">🎪</div>
           <h3>Professional Events</h3>
-          <p>Discover and attend local and virtual networking events. See who else is going and connect before you even walk in.</p>
+          <p>Discover local and virtual networking events. See who else is attending and connect before you even walk through the door.</p>
         </div>
 
         <div class="feature-card">
-          <div class="feature-icon" style="background:#fce4ec;">🚗</div>
+          <div class="feature-icon fi-pink">🚗</div>
           <h3>Conference Carpooling</h3>
-          <p>Share rides to industry events with other professionals. Save money, reduce carbon footprint, and network on the way.</p>
+          <p>Share rides to industry events with fellow professionals. Save money, reduce carbon, and turn your commute into a networking opportunity.</p>
         </div>
 
         <div class="feature-card">
-          <div class="feature-icon" style="background:#e8f5e9;">🔗</div>
+          <div class="feature-icon fi-green">🔗</div>
           <h3>Candidate Referrals</h3>
-          <p>Know someone great? Refer them to open roles and earn rewards. The best hires come through trusted networks.</p>
+          <p>Know someone great for an open role? Refer them. The strongest hires come from trusted professional networks.</p>
         </div>
 
         <div class="feature-card">
-          <div class="feature-icon" style="background:#e3f2fd;">🎓</div>
+          <div class="feature-icon fi-blue">🎓</div>
           <h3>Mentorship</h3>
-          <p>Find a mentor in your industry or offer guidance to someone starting out. Two-way matching ensures mutual intent.</p>
+          <p>Find a mentor in your field or offer guidance to someone starting out. Both-way intent matching ensures every mentorship is genuine.</p>
         </div>
 
       </div>
     </div>
   </section>
 
-  <!-- USE CASES -->
+  <!-- ── USE CASES ──────────────────────────────────────── -->
   <section class="usecases" id="usecases">
     <div class="container">
       <div class="section-tag">Who it's for</div>
       <h2 class="section-title">Whatever your goal,<br/>Zylnq has you covered</h2>
+      <p class="section-sub">Set your intent when you join. Zylnq matches you only with people who align with your goals.</p>
       <div class="usecases-grid">
         <div class="usecase-pill"><span>💼</span><span>Find a job</span></div>
         <div class="usecase-pill"><span>🔍</span><span>Hire talent</span></div>
@@ -379,50 +601,55 @@
         <div class="usecase-pill"><span>🌐</span><span>Grow network</span></div>
         <div class="usecase-pill"><span>🤑</span><span>Find clients</span></div>
         <div class="usecase-pill"><span>💻</span><span>Go freelance</span></div>
-        <div class="usecase-pill"><span>📚</span><span>Learn & upskill</span></div>
+        <div class="usecase-pill"><span>📚</span><span>Learn &amp; upskill</span></div>
       </div>
     </div>
   </section>
 
-  <!-- CTA -->
+  <!-- ── CTA ────────────────────────────────────────────── -->
   <section class="cta">
+    <img src="/icon.png" alt="Zylnq" class="cta-logo" />
     <h2>Your next big opportunity<br/>is one swipe away.</h2>
-    <p>Join thousands of Indian professionals already on Zylnq.</p>
-    <a href="https://play.google.com/store/apps/details?id=com.bschundawat143.syncov" class="btn-primary" style="display:inline-flex;">
+    <p>Join professionals across India already building their network on Zylnq.</p>
+    <a href="https://play.google.com/store/apps/details?id=com.bschundawat143.syncov" class="btn-white">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M3.18 23.76a2 2 0 0 0 2.83 0l.1-.1 9.53-9.53-2.83-2.83L3.18 20.93a2 2 0 0 0 0 2.83zM20.49 10.23l-2.36-1.36-3.17 3.17 3.17 3.17 2.39-1.38a2 2 0 0 0 0-3.6zM2.01 1.05a2 2 0 0 0-.01.28v21.34c0 .1.01.19.02.28l.1-.1 10.65-10.65L2.13 1.13l-.12-.08zM6.01.24L17.04 6.6l-3.17 3.17L6.11.34A2 2 0 0 0 6.01.24z"/></svg>
       Download on Google Play
     </a>
   </section>
 
-  <!-- FOOTER -->
+  <!-- ── FOOTER ─────────────────────────────────────────── -->
   <footer>
     <div class="footer-top">
       <div class="footer-brand">
-        <h3>Zylnq</h3>
-        <p>AI-powered professional networking, built for India's next generation of builders.</p>
+        <div class="footer-brand-row">
+          <img src="/icon.png" alt="Zylnq" />
+          <span>Zylnq</span>
+        </div>
+        <p>AI-powered professional networking, built for India's next generation of builders, creators, and leaders.</p>
       </div>
-      <div class="footer-links">
+      <div class="footer-col">
         <h4>Product</h4>
         <ul>
           <li><a href="#features">Features</a></li>
           <li><a href="#how">How it works</a></li>
-          <li><a href="https://play.google.com/store/apps/details?id=com.bschundawat143.syncov">Download</a></li>
+          <li><a href="#usecases">Use cases</a></li>
+          <li><a href="https://play.google.com/store/apps/details?id=com.bschundawat143.syncov">Download App</a></li>
         </ul>
       </div>
-      <div class="footer-links">
+      <div class="footer-col">
         <h4>Legal</h4>
         <ul>
           <li><a href="/privacy.html">Privacy Policy</a></li>
           <li><a href="/terms.html">Terms of Service</a></li>
         </ul>
       </div>
-      <div class="footer-links">
+      <div class="footer-col">
         <h4>Contact</h4>
         <ul>
           <li><a href="mailto:hello@zylnq.in">hello@zylnq.in</a></li>
           <li><a href="mailto:grievance@zylnq.in">grievance@zylnq.in</a></li>
           <li><a href="https://instagram.com/zylnq">Instagram</a></li>
-          <li><a href="https://linkedin.com/company/zylnq">LinkedIn</a></li>
+          <li><a href="https://twitter.com/zylnq">Twitter / X</a></li>
         </ul>
       </div>
     </div>
