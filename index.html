@@ -194,11 +194,16 @@
     /* HOW IT WORKS */
     .how { background: var(--bg); }
     .how-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 22px; margin-top: 56px; }
-    .how-step { background: #fff; border-radius: 22px; border: 1px solid var(--border); padding: 34px 26px; text-align: center; transition: transform 0.2s, box-shadow 0.2s; }
-    .how-step:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(91,79,232,0.1); }
-    .how-num { width: 52px; height: 52px; border-radius: 16px; background: linear-gradient(135deg, var(--purple), var(--purple-light)); color: #fff; font-size: 22px; font-weight: 900; display: flex; align-items: center; justify-content: center; margin: 0 auto 22px; box-shadow: 0 6px 20px rgba(91,79,232,0.3); }
-    .how-step h3 { font-size: 16px; font-weight: 800; color: var(--dark); margin-bottom: 10px; }
-    .how-step p  { font-size: 14px; color: var(--text); line-height: 1.7; }
+    .how-step { border-radius: 22px; border: none; padding: 34px 26px; text-align: center; transition: transform 0.2s, box-shadow 0.2s; position: relative; overflow: hidden; }
+    .how-step:hover { transform: translateY(-4px); box-shadow: 0 20px 56px rgba(0,0,0,0.18); }
+    .how-step-1 { background: linear-gradient(135deg, #5B4FE8 0%, #8B7FFF 100%); }
+    .how-step-2 { background: linear-gradient(135deg, #0891B2 0%, #00C9A7 100%); }
+    .how-step-3 { background: linear-gradient(135deg, #3D2DB0 0%, #5B4FE8 100%); }
+    .how-step-4 { background: linear-gradient(135deg, #0F766E 0%, #00A88A 100%); }
+    .how-step::before { content: ''; position: absolute; top: -40px; right: -40px; width: 140px; height: 140px; border-radius: 50%; background: rgba(255,255,255,0.08); pointer-events: none; }
+    .how-num { width: 52px; height: 52px; border-radius: 16px; background: rgba(255,255,255,0.2); color: #fff; font-size: 22px; font-weight: 900; display: flex; align-items: center; justify-content: center; margin: 0 auto 22px; border: 2px solid rgba(255,255,255,0.3); }
+    .how-step h3 { font-size: 16px; font-weight: 800; color: #fff; margin-bottom: 10px; }
+    .how-step p  { font-size: 14px; color: rgba(255,255,255,0.82); line-height: 1.7; }
 
     /* FEATURES */
     .features { background: #fff; }
@@ -419,10 +424,10 @@
       <h2 class="section-title">Four steps to your<br/>next opportunity</h2>
       <p class="section-sub">No cold messages. No unanswered requests. Just intentional, warm connections &#8212; fast.</p>
       <div class="how-grid">
-        <div class="how-step"><div class="how-num">1</div><h3>Build your profile</h3><p>Add your skills, experience, city, and goals. The more specific you are, the stronger your matches will be.</p></div>
-        <div class="how-step"><div class="how-num">2</div><h3>Swipe to connect</h3><p>Our AI surfaces the most relevant professionals for your goals. Swipe right to connect, left to pass.</p></div>
-        <div class="how-step"><div class="how-num">3</div><h3>Match &amp; chat</h3><p>When both parties connect, a chat opens. Both opted in &#8212; so every conversation starts warm.</p></div>
-        <div class="how-step"><div class="how-num">4</div><h3>Grow &amp; achieve</h3><p>Attend events, post opportunities, refer candidates, and build your professional reputation over time.</p></div>
+        <div class="how-step how-step-1"><div class="how-num">1</div><h3>Build your profile</h3><p>Add your skills, experience, city, and goals. The more specific you are, the stronger your matches will be.</p></div>
+        <div class="how-step how-step-2"><div class="how-num">2</div><h3>Swipe to connect</h3><p>Our AI surfaces the most relevant professionals for your goals. Swipe right to connect, left to pass.</p></div>
+        <div class="how-step how-step-3"><div class="how-num">3</div><h3>Match &amp; chat</h3><p>When both parties connect, a chat opens. Both opted in &#8212; so every conversation starts warm.</p></div>
+        <div class="how-step how-step-4"><div class="how-num">4</div><h3>Grow &amp; achieve</h3><p>Attend events, post opportunities, refer candidates, and build your professional reputation over time.</p></div>
       </div>
     </div>
   </section>
